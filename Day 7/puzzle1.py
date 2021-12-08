@@ -1,5 +1,5 @@
 def get_input():
-    with open('ex', 'r') as file:
+    with open('input', 'r') as file:
         contents = file.read().split(',')
     
     return contents
@@ -10,37 +10,18 @@ def main():
     max_crabs = max(input_list)
     min_crabs = min(input_list)
 
-    fuel_costs = [] 
+    min_fuel = 0
 
     for i in range(min_crabs, max_crabs+1):
-        distances = []
-        nums = []
-        for j, crab in enumerate(input_list):
-            distances.append(abs(crab - i))
-            nums.append(j)
-        final_cost = sum([cost*nums[k] for k, cost in enumerate(distances)])
+        fuel_cost = 0
+        for crab in input_list:
+            n = abs(crab - i)
+            fuel_cost += n*(n+1)/2
         
-        fuel_costs.append(final_cost)
+        if fuel_cost < min_fuel or min_fuel == 0:
+            min_fuel = fuel_cost
 
-    print(min(fuel_costs))
-
-
-
-
-def find_solution(input_list, pos):
-    
-    under = pos - 1
-    over = pos + 1
-
-    for crab in input_list:
-        fuel += abs(crab-pos)
-
-    
-
-
-
-
-
+    print(min_fuel)
 
 if __name__ == '__main__':
     main()
