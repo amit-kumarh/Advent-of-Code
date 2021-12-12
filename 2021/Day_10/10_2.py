@@ -1,5 +1,3 @@
-import numpy as np
-
 def get_input():
     with open('input', 'r') as file:
         contents = file.read().split('\n')
