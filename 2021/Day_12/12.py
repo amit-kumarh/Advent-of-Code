@@ -55,12 +55,6 @@ paths = 0
 test = traverse('start', defaultdict(int), [])
 print(paths)
 
-#    start
-#    /   \
-#c--A-----b--d
-#    \   /
-#     end
-
 
 
 
