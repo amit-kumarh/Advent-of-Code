@@ -1,0 +1,1 @@
+with open("input", "r") as infile: print(*[input := infile.read().strip().split("\n"), sum([len(x.split(" "))==len(set(x.split(" "))) for x in input]), sum([len([''.join(sorted(a)) for a in x.split(" ")])==len(set([''.join(sorted(a)) for a in x.split(" ")])) for x in input])][1:], sep="\n")
