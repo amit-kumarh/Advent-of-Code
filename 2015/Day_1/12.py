@@ -6,10 +6,10 @@ with open('2015/Day_1/input', 'r') as file:
 floor = 0
 for i, char in enumerate(contents):
     if floor == -1:
-        print(i)
+        break
     if char == '(':
         floor += 1
     elif char == ')':
         floor -= 1
 
-print(floor)
+print(i)

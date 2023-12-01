@@ -1,5 +1,5 @@
 SHELL=/usr/bin/zsh
-now=$((10#$(date +'%d')))
+now=$((10#$(date +'%d')-6))
 dir_name=Day_$now
 echo $now
 echo $dir_name

@@ -1,0 +1,1 @@
+print([cubes := set(tuple(int(x) for x in line.split(',')) for line in open('input', 'r').read().strip().split('\n')), sum(6 - sum((adj in cubes) for adj in [(cube[0]+dx, cube[1]+dy, cube[2]+dz) for dx, dy, dz in [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]]) for cube in cubes)][-1])
