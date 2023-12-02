@@ -1,5 +1,7 @@
 input
 *.png
 ex
+*.in
+*.ex
 .python-version
 pyrightconfig.json
