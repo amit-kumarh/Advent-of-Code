@@ -12,18 +12,14 @@ def new_beams(pos, dir):
             newbeams.append((pos + dir, dir))
         case '/':
             match dir:
-                case 1j: newdir = -1
-                case -1j: newdir = 1
-                case 1: newdir = -1j
-                case -1: newdir = 1j
+                case 1j | -1j: newdir = -dir.imag
+                case 1 | -1: newdir = -dir.real * 1j
                 case _: assert False
             newbeams.append((pos + newdir, newdir))
         case '\\':
             match dir:
-                case 1j: newdir = 1
-                case -1j: newdir = -1
-                case 1: newdir = 1j
-                case -1: newdir = -1j
+                case 1j | -1j: newdir = dir.imag
+                case 1 | -1: newdir = dir.real * 1j
                 case _: assert False
             newbeams.append((pos + newdir, newdir))
         case '-':
@@ -47,15 +43,15 @@ def new_beams(pos, dir):
 def run(start, dir):
     beams = collections.deque()
     beams.append((start, dir))
-    ener = collections.defaultdict(set)
+    seen = collections.defaultdict(set)
     while beams:
         pos, dir = beams.popleft()
-        ener[pos].add(dir)
+        seen[pos].add(dir)
 
         for pos, dir in new_beams(pos, dir):
-            if pos in grid and dir not in ener[pos]:
+            if pos in grid and dir not in seen[pos]:
                 beams.append((pos, dir))
-    return len(ener)
+    return len(seen)
 
 ans = 0
 for i, _ in enumerate(contents):
