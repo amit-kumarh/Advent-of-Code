@@ -6,12 +6,6 @@ with open(sys.argv[1]) as f:
     contents = f.read().strip()
     workflows, parts = contents.split('\n\n')
 
-def make_lambda(op, cmp):
-    match op:
-        case '<': return lambda x: x < cmp
-        case '>': return  lambda x: x > cmp
-        case _: assert False
-
 rules = collections.defaultdict(list)
 for line in workflows.splitlines():
     name, rest = line.split('{') #}
@@ -21,7 +15,7 @@ for line in workflows.splitlines():
             xmas, func, goto = None, lambda: True, i
         else:
             xmas, op, cmp, goto = re.findall(r"([a-z]+)([<>])(-?\d+):(.*)", i)[0]
-            func = make_lambda(op, int(cmp))
+            func = eval(f"lambda x: x {op} {cmp}")
         rules[name].append((xmas, func, goto))
 
 def solve_p1(state, rule):
