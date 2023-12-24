@@ -3,15 +3,15 @@ import heapq
 
 # jerryrigging a state class bc heapq doesn't like complex numbers...
 class State:
-	def __init__(self, dist, loc, dir, cdir):
-		self.dist = dist
-		self.loc = loc
-		self.dir = dir
-		self.cdir = cdir
-		self.key = (self.loc, self.dir, self.cdir)
+    def __init__(self, dist, loc, dir, cdir):
+        self.dist = dist
+        self.loc = loc
+        self.dir = dir
+        self.cdir = cdir
+        self.key = (self.loc, self.dir, self.cdir)
 
-	def __lt__(self, other):
-		return (self.dist, self.cdir)<(other.dist, other.cdir)
+    def __lt__(self, other):
+        return (self.dist, self.cdir)<(other.dist, other.cdir)
 
 with open(sys.argv[1]) as f:
     contents = f.read().strip().splitlines()
