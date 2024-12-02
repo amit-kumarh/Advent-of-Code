@@ -12,11 +12,9 @@ def safe(nums):
             continue
         diff = abs(n - nums[i - 1])
         if diff < 1 or diff > 3:
-            break
-    else:
-        return True
+            return False
 
-    return False
+    return True
 
 def solve(p2):
     ans = 0
